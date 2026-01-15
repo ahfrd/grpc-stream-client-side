@@ -1,0 +1,91 @@
+syntax = "proto3";
+
+package market_trend;
+import "google/protobuf/timestamp.proto";
+
+service DataStream {
+  rpc StreamData(FilterRequest) returns (stream DataStreamResponse);
+}
+
+message FilterRequest {
+  string sort = 1; 
+  string filter = 2;
+}
+
+message DataStreamResponse {
+    int32 code = 1;
+   repeated EStockInfo data = 2;
+    string message = 3;
+}
+
+message EStreamStock {
+    string stock_code = 1;
+    double open = 2;
+    double high = 3;
+    double low = 4;
+    double close = 5;
+    double change = 6;
+    double changePercent = 7;
+    double volume = 8;
+    double value = 9;
+    double previousClose = 10;
+    double avg = 11;
+    int64 lastUpdated = 12;
+    double tradeVolume = 13;
+    double araValue = 14;
+    double arbValue = 15;
+    double bestBid = 16;
+    double bestOffer = 17;
+    double totalFreq = 18;
+    EForeign foreign = 19;
+    double error = 20;
+    string name = 21;
+}
+
+message EForeign {
+   double buy = 1;
+   double sell = 2;
+}
+
+message TR0002 {
+    int64 tradeDate = 1;
+    int64 tradeTime = 2;
+    int64 tradeNo = 3;
+    string tradeType = 4;
+    string securityCode = 5;
+    string boardCode = 6;
+    double price = 7;
+    int64 volume = 8;
+    string buyerCode = 9;
+    string buyerType = 10;
+    string sellerCode = 11;
+    string sellerType = 12;
+    double bestBid = 13;
+    int64 bestBidVolume = 14;
+    double bestOffer = 15;
+    int64 bestOfferVolume = 16;
+    google.protobuf.Timestamp tradeTimestamp = 17;
+    google.protobuf.Timestamp updatedDate = 18;
+    google.protobuf.Timestamp timeStampStream = 19;
+    double fluctAmount = 20;
+    double open = 21;
+    double high = 22;
+    double low = 23;
+    int32 freq = 24;
+    int32 totalVol = 25;
+    int64 totalAmount = 26;
+}
+
+message EStockInfo {
+  double percentChange = 1;
+  string code = 2;
+  string notation = 3;
+  double price = 4;
+  double change = 5;
+  double totalFreq = 6;
+  double totalVolume = 7;
+  double volume = 8;
+  double value = 9;
+  string name = 10;
+  int64 lastUpdated = 11;
+}
